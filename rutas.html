@@ -85,78 +85,83 @@
 
                
     
-    <aside>
-		<div id="lista"></div>
-		<div>
-			<select id="localidad_busqueda">			
-				<option selected>Todas</option>
-				<option>Abadía</option>
-				<option>Aldeanueva del Camino</option>
-				<option>Baños de Montemayor</option>
-				<option>Casas del Monte</option>
-				<option>Gargantilla</option>
-				<option>Hervás</option>
-				<option>La Garganta</option>
-				<option>Segura del Toro</option>
-			</select>
-		</div>
-		<div>
-			<input type="text" name="calendario" id="datepicker"/>
-		</div>
-    </aside>
-    
-	<section>
-	<article>
-     <div id="ruta">
-	 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
-		<p><li>Localidad: <span id="localidad"></span></li>
-		<li>Distancia: <span id="Distancia"></span> km</li></p>
-		<p><li>Tiempo: <span id="Tiempo"></span></li>
-		<li>Dificultad: <span id="Dificultad"></span></li>
-		<li>Máximo Personas: <span id="max_personas"></span></li></p>
-		<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
-		<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
-	 </div>
-	
-	<div id="tabs">
-	<ul>
-		<li><a href="#tabs-1">Descripción</a></li>
-		<li><a href="#tabs-2">Mapa</a></li>
-	</ul>
-    <div id="tabs-1"><div id="descripcion"></div></div>
-	<div id="tabs-2"><div id="mapa"></div></div>
-	
-    
-	</div>
-	
-    </article>
-	</section>
-    </div>
-	</div>
-            <footer>
-                <p>RUTAS DoubleG S.A©</p>
-            </footer>
-			<div class="overlay-container">
-				<div class="window-container zoomin">
-				<span id="close" class="button reserva">Cerrar</span>
-					<div id="reservar">
-					<li>Ruta: <span id="rutareserva"></span></li>
-					<li>Nombre completo: <span id="nombrecompleto"></span></li>
-					<li><label>DNI: <span id="DNIreserva"></span>	</li>
-					</div>
-					
-					<div class="acompanante">	
-					<p>Nuevo/a comapañero/a</p>					
-					<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
-					<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
-					</div>
-					<div id="listado_ruteros" class="oculto"></div>
-					<a href="#" id="rutero" class="button reserva">Añadir</a>
-					<span id="guardar_Reserva" class="button reserva">Guardar</span>
+		<aside id="menu-busqueda">
+			<p>Rutas seleccionables:</p>
+			<div id="lista"><select id="listado"></select></div>
+			<p>Localidades:</p>
+			<div>
+				<select id="localidad_busqueda">			
+					<option selected>Todas</option>
+					<option>Abadía</option>
+					<option>Aldeanueva del Camino</option>
+					<option>Baños de Montemayor</option>
+					<option>Casas del Monte</option>
+					<option>Gargantilla</option>
+					<option>Hervás</option>
+					<option>La Garganta</option>
+					<option>Segura del Toro</option>
+				</select>
+			</div>
+			<p>Fechas disponibles:</p>
+			<div>
+				<input type="text" name="calendario" id="datepicker"/>
+			</div>
+			<span class="button reserva" id="reset">Reset</span>
+			<div id="Clas_rutas"></div>
+		</aside>
+		
+		<section>
+			<article>
+			 <div id="ruta">
+			 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
+				<p><li id="especial">Localidad: <span id="localidad"></span></li>
+				</p>
+				<p><li>Tiempo: <span id="Tiempo"></span></li>
+				<li>Dificultad: <span id="Dificultad"></span></li>
+				<li>Distancia: <span id="Distancia"></span> km</li></p>
+				<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
+				<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
+			 </div>
+			
+			<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Descripción</a></li>
+				<li><a href="#tabs-2">Mapa</a></li>
+			</ul>
+			<div id="tabs-1"><div id="descripcion"></div></div>
+			<div id="tabs-2"><div id="mapa"></div></div>
+			
+			
 			</div>
 			
-		</div>
+			</article>
 			
+		</section>
+		
+    </div>
+	
+	<footer>
+		<p>RUTAS DoubleG S.A©</p>
+	</footer>
+		<div class="overlay-container">
+			<div class="window-container zoomin">
+			<span id="close" class="button reserva">Cerrar</span>
+				<div id="reservar">
+				<li>Ruta: <span id="rutareserva"></span></li>
+				<li>Nombre completo: <span id="nombrecompleto"></span></li>
+				<li><label>DNI: <span id="DNIreserva"></span>	</li>
+				</div>
+				
+				<div class="acompanante">	
+				<p>Nuevo/a comapañero/a</p>					
+				<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
+				<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
+				</div>
+				<div id="listado_ruteros" class="oculto"></div>
+				<a href="#" id="rutero" class="button reserva">Añadir</a>
+				<span id="guardar_Reserva" class="button reserva">Guardar</span>
+			</div>			
+		</div>			
         </body>
 
     </html>

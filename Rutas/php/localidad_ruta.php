@@ -2,9 +2,10 @@
 	require_once("clase_rutas.php");
 	$enlace=new rutas();
 	$localidad=$_POST['localidad'];
+	//$localidad="Gargantilla";
 	$datos=array();
 	$resultado=$enlace->seleccionarRutasLocalidad($localidad);
-
+//print_r($resultado);
 	class ruta{
 		public $id="";
 		public $nombre="";

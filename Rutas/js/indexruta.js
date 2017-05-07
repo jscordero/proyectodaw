@@ -5,165 +5,13 @@ var day = date.getDay();
 return [(day != 0 && day != 1 && day != 2 && day != 3 && day != 4 && day != 5), ''];
 }
 
-function cargarRutasFecha(){
-	$('#localidad_busqueda').val("Todas")
-	var fecha = $('#datepicker').val()
-	console.log("def"+fecha)
-	if (fecha == ""){
-		
-	}else{	
-	
-		var fechax=fecha.split("/")				
-		var anio=fechax[2]
-		var mes=fechax[1]
-		var dia=fechax[0]			
-		var fecha2=anio+'/'+mes+'/'+dia
-		var dato={
-			fecha:fecha2
-		}
-		
-		$.ajax({
-			data:dato,
-			url: 'rutas/php/busqueda_fecha.php', 
-			type: 'POST',
-			DataType:'Json',	
-			success: function(data){ 
-			
-				if(data[0].nombre=="vacio"){
-						alert("No Hay rutas para esa fecha");
-				}else{			
-					$('#lista').html("")
-					enlace="<select id='listado'>"
-					for(var x=0;x<data.length;x++){
-										
-						if(x==0){
-							enlace+="<option selected='selected'>"					
-						}else{
-							enlace+="<option>"
-						}				
-						enlace +=data[x].nombre
-						enlace+="</option>"
-					}
-					enlace+="</select>"   			
-					$('#lista').html(enlace)		
-						var ruta=$('#listado').val()				
-						CargarRutaInicio(ruta)
-								
-				}
-			
-			}
-		})
-	}
-}
+function calcularTiempo(minutos){
+	var horas=Math.trunc(minutos/60);
+	var minuto=minutos-horas*60;
 
-function cargarRutasLocalidad(){
-	$('#datepicker').val("")
-	console.log("dentro busqueda local")
-	var local=$('#localidad_busqueda').val()
-	var dato={
-		localidad:local
-	}
-	$.ajax({
-		data:dato,
-		url:'rutas/php/localidad_ruta.php',
-		type:'POST',
-		DataType:'Json',
-		success:function(data){
-			$('#lista').html("")
-			enlace="<select id='listado'>"
-			for(var x=0;x<data.length;x++){
-								
-				if(x==0){
-					enlace+="<option selected='selected'>"					
-				}else{
-					enlace+="<option>"
-				}				
-				enlace +=data[x].nombre
-				enlace+="</option>"
-			}
-			enlace+="</select>"   			
-			$('#lista').html(enlace)		
-			var ruta=$('#listado').val()
-				
-			CargarRutaInicio(ruta)
-		}
-	})
-}
-/*
-function comprobarSession(){
-	$.ajax({
-		url: 'usuarios/php/clase_sessiones.php',
-		type: 'POST',
-		DataType:'Json',		
-		success: function(data){ 
-		
-		if (data.usuario==""){
-			console.log("no hay sesion")
-		}else{
-			console.log("Session: "+data.usuario)
-		}
-			
-		}
-	})
-}*/
-
-function annadir(){
-	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
-		
-	}else{
-		if($('#listado_ruteros').hasClass('oculto')){
-			$('#listado_ruteros').removeClass("oculto")
-			$('#listado_ruteros').addClass("mostrar")
-		}
-		//$('#listado_ruteros').removeClass("oculto")
-		//$('#listado_ruteros').addClass("mostrar")
-		var nombre=$('#nombre_rutero').val()
-		var dni=$('#dni_rutero').val()
-		
-		var mensaje=$('#listado_ruteros').html()
-		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
-		$('#listado_ruteros').html(mensaje)
-	}
+	return (horas+"H "+minuto+"'")
 	
 }
-
-$(document).ready(function(){
-	comprobarSession()
-	$('#rutero').click(annadir)
-	$('#localidad_busqueda').change(cargarRutasLocalidad)
-		var hoy= new Date()
-			$.datepicker.regional['es'] = {
-				closeText: 'Cerrar',
-				prevText: '< Ant',
-				nextText: 'Sig >',
-				currentText: 'Hoy',
-				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-				weekHeader: 'Sm',
-				dateFormat: 'dd/mm/yy',
-				firstDay: 1,
-				isRTL: false,
-				showMonthAfterYear: false,
-				yearSuffix: ''
-			 }
-			$.datepicker.setDefaults($.datepicker.regional['es'])
-			$("#datepicker").datepicker({
-				minDate: hoy,
-				changeMonth:true,
-				beforeShowDay: noExcursion,
-			})
-			$('#datepicker').change(cargarRutasFecha)
-		$( "#tabs" ).tabs({
-			collapsible: true
-	})	
-	cargarRutas()
-	//CargarRutaInicio()
-	
-  
-
 
 function cargarRutas(){	
 	
@@ -173,9 +21,10 @@ function cargarRutas(){
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){ 
+			var enlace=""
+			$('#listado').html("")
+			//enlace="<select id='listado'>"
 			
-			$('#lista').html("")
-			enlace="<select id='listado'>"
 			for(var x=0;x<data.length;x++){
 								
 				if(x==0){
@@ -186,8 +35,8 @@ function cargarRutas(){
 				enlace +=data[x].nombre
 				enlace+="</option>"
 			}
-			enlace+="</select>"   			
-			$('#lista').html(enlace)		
+			//enlace+="</select>"   			
+			$('#listado').html(enlace)		
 			var ruta=$('#listado').val()
 				
 			CargarRutaInicio(ruta)
@@ -199,6 +48,7 @@ function cargarRutas(){
 		}		
 	})
 }
+
 
 function CargarRutaInicio(ruta){	
 	dato={
@@ -220,7 +70,7 @@ function CargarRutaInicio(ruta){
 			$('#Distancia').html(data[0].km)
 			$('#valoracion').html(data[0].valoracion)
 			$('#Dificultad').html(data[0].dificultad)
-			$('#max_personas').html(data[0].max_res)
+			//$('#max_personas').html(data[0].max_res)
 			$('#PDF').attr("href",(data[0].pdf))
 			$('#PDF').attr("download",(data[0].nombre))
 			$('#descripcion').html(data[0].consejos)
@@ -265,26 +115,153 @@ function CargarRutaInicio(ruta){
 		}
 	})	
 }
-$('#guardar_Reserva').click(guardarReserva)
-function calcularTiempo(minutos){
-	var horas=Math.trunc(minutos/60);
-	var minuto=minutos-horas*60;
 
-	return (horas+"H "+minuto+"'")
+
+function cargarRutasFecha(){
+	$('#localidad_busqueda').val("Todas")
+	var fecha = $('#datepicker').val()
+	console.log("def"+fecha)
+	if (fecha == ""){
+		
+	}else{	
 	
+		var fechax=fecha.split("/")				
+		var anio=fechax[2]
+		var mes=fechax[1]
+		var dia=fechax[0]			
+		var fecha2=anio+'/'+mes+'/'+dia
+		var dato={
+			fecha:fecha2
+		}
+		
+		$.ajax({
+			data:dato,
+			url: 'rutas/php/busqueda_fecha.php', 
+			type: 'POST',
+			DataType:'Json',	
+			success: function(data){ 
+			
+				if(data[0].nombre=="vacio"){
+						alert("No Hay rutas para esa fecha");
+						cargarRutas()
+				}else{			
+					$('#lista').html("")
+					enlace="<select id='listado'>"
+					for(var x=0;x<data.length;x++){
+										
+						if(x==0){
+							enlace+="<option selected='selected'>"					
+						}else{
+							enlace+="<option>"
+						}				
+						enlace +=data[x].nombre
+						enlace+="</option>"
+					}
+					enlace+="</select>"   			
+					$('#lista').html(enlace)		
+						var ruta=$('#listado').val()				
+						//CargarRutaInicio(ruta)
+								
+				}
+				CargarRutaInicio(ruta)
+			}
+		})
+	}
 }
+
+function cargarRutasLocalidad(){
+	$('#datepicker').val("")
+	console.log("dentro busqueda local")
+	var local=$('#localidad_busqueda').val()
+	var dato={
+		localidad:local
+	}
+	$.ajax({
+		data:dato,
+		url:'rutas/php/localidad_ruta.php',
+		type:'POST',
+		DataType:'Json',
+		success:function(data){
+			$('#lista').html("")
+			enlace="<select id='listado'>"
+			for(var x=0;x<data.length;x++){
+								
+				if(x==0){
+					enlace+="<option selected='selected'>"					
+				}else{
+					enlace+="<option>"
+				}				
+				enlace +=data[x].nombre
+				enlace+="</option>"
+			}
+			enlace+="</select>"   			
+			$('#lista').html(enlace)		
+			var ruta=$('#listado').val()
+				
+			CargarRutaInicio(ruta)
+		}
+	})
+}
+
+
+
+
+$(document).ready(function(){
+	$('#reset').click(reseteo)
+	comprobarSession()
+	$('#rutero').click(annadir)
+	$('#localidad_busqueda').change(cargarRutasLocalidad)
+		var hoy= new Date()
+			$.datepicker.regional['es'] = {
+				closeText: 'Cerrar',
+				prevText: '< Ant',
+				nextText: 'Sig >',
+				currentText: 'Hoy',
+				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+				weekHeader: 'Sm',
+				dateFormat: 'dd/mm/yy',
+				firstDay: 1,
+				isRTL: false,
+				showMonthAfterYear: false,
+				yearSuffix: ''
+			 }
+			$.datepicker.setDefaults($.datepicker.regional['es'])
+			$("#datepicker").datepicker({
+				minDate: hoy,
+				changeMonth:true,
+				beforeShowDay: noExcursion,
+			})
+			$('#datepicker').change(cargarRutasFecha)
+		$( "#tabs" ).tabs({
+			collapsible: true
+	})	
+	cargarRutas()
+	//CargarRutaInicio()
+	
+$('#guardar_Reserva').click(guardarReserva)
 
 //comentario
 
 	$('#botonreserva').click(function() {
 		console.log($('#nombre_ruta').html())
 		
-		$('#guardar_Reserva').addClass('oculto')
-				$('#rutero').addClass('oculto')
-				$('.acompanante').addClass('oculto')
-				if($('#listado_ruteros').hasClass('oculto')){
-					$('#listado_ruteros').removeClass('oculto')
-				$('#listado_ruteros').addClass('mostrar')}
+		
+				if($('#rutero').hasClass('ocultar')){
+					$('#rutero').removeClass('ocultar')
+				$('#rutero').addClass('mostrar')}
+				if($('.acompanante').hasClass('ocultar')){
+					$('.acompanante').removeClass('ocultar')
+				$('.acompanante').addClass('mostrar')}
+				if($('#listado_ruteros').hasClass('mostrar')){
+					$('#listado_ruteros').removeClass('mostrar')
+				$('#listado_ruteros').addClass('ocultar')}
+				if($('#guardar_Reserva').hasClass('ocultar')){
+					$('#guardar_Reserva').removeClass('ocultar')
+				$('#guardar_Reserva').addClass('mostrar')}
 		$.ajax({
 			url:   'Usuarios/php/clase_sessiones.php',
             type:  'post',
@@ -309,12 +286,7 @@ function calcularTiempo(minutos){
 	
 	$('#close').click(cerrarPopUp);
 	
-	function cerrarPopUp(){
-		$('#listado_ruteros').removeClass("mostrar")
-		$('#listado_ruteros').addClass("ocultar")
-		$('#listado_ruteros').html("")
-		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
-	}
+	
 	comprobarSession()
 
     $('#loguearse').on('click',function() {
@@ -642,13 +614,15 @@ function comprobarSession(){
 			DataType:'Json',		
 			success: function(data){
 				console.log(data)
-				$('#guardar_Reserva').addClass('oculto')
-				$('#rutero').addClass('oculto')
-				$('.acompanante').addClass('oculto')
-				if($('#listado_ruteros').hasClass('oculto')){
-					$('#listado_ruteros').removeClass('oculto')
-					$('#listado_ruteros').addClass('mostrar')
-				}
+				$('#guardar_Reserva').removeClass('mostrar')
+				$('#guardar_Reserva').addClass('ocultar')
+				$('#rutero').removeClass('mostrar')
+				$('#rutero').addClass('ocultar')
+				$('.acompanante').removeClass('mostrar')
+				$('.acompanante').addClass('ocultar')
+				
+				$('#listado_ruteros').addClass('mostrar')
+				
 				var acompa=$('#listado_ruteros').html()
 				acompa+="<p>"+data+"</p>"
 				console.log("guardado"+acompa)
@@ -660,4 +634,42 @@ function comprobarSession(){
 	
 	
 
+function annadir(){
+	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
+		
+	}else{
+		
+			$('#listado_ruteros').removeClass("ocultar")
+			$('#listado_ruteros').addClass("mostrar")
+		
+		//$('#listado_ruteros').removeClass("ocultar")
+		//$('#listado_ruteros').addClass("mostrar")
+		var nombre=$('#nombre_rutero').val()
+		var dni=$('#dni_rutero').val()
+		
+		var mensaje=$('#listado_ruteros').html()
+		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
+		$('#listado_ruteros').html(mensaje)
+	}
+	
+}
 
+function cerrarPopUp(){
+		$('#listado_ruteros').removeClass("mostrar")
+		$('#listado_ruteros').addClass("ocultar")
+		$('#listado_ruteros').html("")
+		$('#guardar_Reserva').removeClass('ocultar')
+		$('#guardar_Reserva').addClass('mostrar')
+		$('#rutero').removeClass('ocultar')
+		$('#rutero').addClass('mostrar')
+		$('.acompanante').removeClass('ocultar')
+		$('.acompanante').addClass('mostrar')
+		$('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
+	}
+	
+	function reseteo(){
+		$('#datepicker').val("")
+		$('#localidad_busqueda').val("Todas")
+		cargarRutas()
+		cargarRutaInicio($('#listado').val())
+	}

@@ -93,9 +93,12 @@
 		}
 		
 		function seleccionarRutasLocalidad($localidad){
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD where localidad.LOCALIDAD='".$localidad."' order by rutas.VALORACION desc";			
-			if($resultado=$this->conexion->query($consulta)){
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD " ;			
+			if($localidad!="Todas"){
+				$consulta.="where localidad.LOCALIDAD='".$localidad."'";
+			}
 			
+			if($resultado=$this->conexion->query($consulta)){			
 				$datos=array();
 				while($fila=$resultado->fetch_assoc()){	
 					$enlace=array($fila['ID'],$fila['NOM'],$fila['KILOMETROS'],$fila['MINUTOS'],$fila['LOC'],$fila['CONSEJOS'],$fila['DIFICULTAD'],$fila['VALORACION'],$fila['PDF'],$fila['MAX_RESERVAS'],$fila['MAPA']);
