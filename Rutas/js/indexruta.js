@@ -143,7 +143,7 @@ function cargarRutasFecha(){
 			
 				if(data[0].nombre=="vacio"){
 						alert("No Hay rutas para esa fecha");
-						cargarRutas()
+						//cargarRutas()
 				}else{			
 					$('#lista').html("")
 					enlace="<select id='listado'>"
@@ -160,10 +160,10 @@ function cargarRutasFecha(){
 					enlace+="</select>"   			
 					$('#lista').html(enlace)		
 						var ruta=$('#listado').val()				
-						//CargarRutaInicio(ruta)
+						CargarRutaInicio(ruta)
 								
 				}
-				CargarRutaInicio(ruta)
+				//CargarRutaInicio(ruta)
 			}
 		})
 	}
@@ -207,8 +207,8 @@ function cargarRutasLocalidad(){
 
 
 $(document).ready(function(){
+	console.log("dentro")
 	$('#reset').click(reseteo)
-	
 	$('#rutero').click(annadir)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
 		var hoy= new Date()
@@ -285,7 +285,7 @@ $('#guardar_Reserva').click(guardarReserva)
 	});
 	
 	$('#close').click(cerrarPopUp);
-	  
+})
 	function guardarReserva(){
 		var id=$('#id_ruta').val()
 		var fecha=$('#listado_rutas').val()
@@ -337,7 +337,7 @@ $('#guardar_Reserva').click(guardarReserva)
 		})
 	}
 	
-}	
+	
 
 function annadir(){
 	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
