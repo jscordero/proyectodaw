@@ -8,7 +8,7 @@
 	$max_res=$_POST['maximo'];
 	$mapa="".$_POST['mapa'];
 	$dificultad=$_POST['dificultad'];
-	$destino=$_POST['archivo'];	
+	$destino="";
 	$imagen=$_POST['archivo'];	
 	
 	

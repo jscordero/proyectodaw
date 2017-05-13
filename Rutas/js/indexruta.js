@@ -75,6 +75,7 @@ function CargarRutaInicio(ruta){
 			$('#PDF').attr("download",(data[0].nombre))
 			$('#descripcion').html(data[0].consejos)
 			$('#mapa').html(data[0].mapa)	
+			actualizarComentarios()
 			dato={
 				id:id
 			}
@@ -142,7 +143,7 @@ function cargarRutasFecha(){
 			success: function(data){ 
 			
 				if(data[0].nombre=="vacio"){
-						alert("No Hay rutas para esa fecha");
+						alert("No Hay rutas para esa fecha")
 						//cargarRutas()
 				}else{			
 					$('#lista').html("")
@@ -207,9 +208,11 @@ function cargarRutasLocalidad(){
 
 
 $(document).ready(function(){
+	$('#enviarComentario').click(guardarComentario)
 	console.log("dentro")
 	$('#reset').click(reseteo)
 	$('#rutero').click(annadir)
+	$('#nuevocomentario').click(abrirComentario)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
 		var hoy= new Date()
 			$.datepicker.regional['es'] = {
@@ -285,6 +288,7 @@ $('#guardar_Reserva').click(guardarReserva)
 	});
 	
 	$('#close').click(cerrarPopUp);
+	$('#close2').click(cerrarPopUpComentario);
 })
 	function guardarReserva(){
 		var id=$('#id_ruta').val()
@@ -332,7 +336,7 @@ $('#guardar_Reserva').click(guardarReserva)
 				acompa+="<p>"+data+"</p>"
 				console.log("guardado"+acompa)
 				$('#listado_ruteros').html(acompa)
-					
+				cerrarPopUp()	
 			}
 		})
 	}
@@ -358,6 +362,9 @@ function annadir(){
 	}
 	
 }
+function cerrarPopUpComentario(){
+	$('.overlay-container2').fadeOut().end().find('.window-container2').removeClass('window-container-visible2');
+}
 
 function cerrarPopUp(){
 		$('#listado_ruteros').removeClass("mostrar")
@@ -378,3 +385,62 @@ function cerrarPopUp(){
 		cargarRutas()
 		cargarRutaInicio($('#listado').val())
 	}
+	
+	function abrirComentario(){
+		type = $(this).attr('data-type');
+		
+		$('.overlay-container2').fadeIn(function() {
+			
+			window.setTimeout(function(){
+				$('.window-container2.'+type).addClass('window-container-visible2');
+			}, 100);
+			
+		});
+	}
+	
+	function guardarComentario(){
+		var idruta=$('#id_ruta').val()
+		var comentario = $('#caja_comentario').val()
+		datos={
+			ruta:idruta,
+			comentario:comentario
+		}
+		$.ajax({
+			data:datos,
+			url:'usuarios/php/Guardar_Comentario.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){
+				console.log(data)
+				cerrarPopUpComentario()
+				$('#caja_comentario').val("")
+				actualizarComentarios()
+			}
+		})
+	}
+	
+	function actualizarComentarios(){
+		var idruta=$('#id_ruta').val()
+		var datos={
+			id:idruta
+		}
+		$.ajax({
+			data:datos,
+			url:'usuarios/php/mostrarComentarios.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){				
+				$('#comentarios_usuarios').html("")
+				var enlace=""
+				for(var x=0;x<data.length;x++){
+					enlace+="<article class='foros'>"					
+					enlace+="<p class='foros1'><span class='nick'>"+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></p>"
+					enlace+="<article><p class='foros2'>"+data[x].mensaje+"</p></article>"				
+					enlace+="</article>"
+				}
+				
+				$('#comentarios_usuarios').html(enlace)
+			}
+		})
+	}
+	
