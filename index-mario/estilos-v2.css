@@ -1,0 +1,89 @@
+*{margin: 0px; padding: 0px; font-family: "Verdana"}
+body {background-color: #e6e6e6 !important;}
+.imagen{width: 100%; height: 50px;}
+
+.ocultar{display: none;}
+
+
+/* MENU TOP */
+#menu-top{width: 100%; background-color: #74b138;}
+#menu-top li form{color: white; background-color: #74b138;}
+#menu-top li{float: right;}
+#menu-top input{margin-top: 5px;}
+#menu-top label{padding-left: 12px;}
+#menu-top input{width:150px; margin-left:10%; display:block;}
+#menu-top li{width:200px; text-align:center;}
+.oculto{visibility: hidden;}
+.boton{background-color: white; color: black; border: 5px solid #4CAF50;}
+
+/* HEADER */
+header{width: 100%; height: 100%; background-color: #FFFFFF;}
+header h1{width: 100%; padding:30px; text-align: center; font-family: 'Arial'; font-size: 54px;}
+header a{ text-decoration:none; color:#000000;}
+
+/* PIE */
+footer p{width: 100%; text-align: center; padding: 10px 0px; background-color: #74b138; color:white;}
+footer{width: 100%; height: 50px; margin-top: 5px; float: left;}
+
+
+/* COLUMNA DERECHA */
+aside{width: 25%; height:100%;  margin-top: 0px; float: right; color: white; text-decoration: none; position:relative; left: 25%; overflow: hidden;}
+aside p{padding: 36px;}
+
+/* BOTONES */
+
+.button{display: inline-block; border-radius: 4px; background-color: #374b94; border: none; color: #FFFFFF; text-align: center; font-size: 28px; padding: 20px; width: 200px; transition: all 0.5s; cursor: pointer;margin: 5px;}
+.button span{cursor: pointer; display: inline-block; position: relative; transition: 0.5s;}
+.button span:after{content: '\00bb'; position: absolute; opacity: 0; top: 0; right: -20px; transition: 0.5s;}
+.button:hover span{padding-right: 25px;}
+.button:hover span:after{opacity: 1; right: 0;}
+
+/* CUERPO */
+
+.cuerpo1{float: left; width: 100%; overflow: hidden; position: relative; background-color:#74b138;}
+.cuerpo2{float: left; width: 100%; position: relative; right: 25%; background-color: #fff}
+article{width: 100%; height: auto; margin-right: auto; margin-left: auto; margin-top: 0px; padding: 15px 0px; border-top:1px solid #E0E0E0; display: inline-block;}
+article h2{text-align: center; padding-bottom: 15px; font-size: 30px;}
+article p{width: 90%; margin-right: 5%; margin-left: 5%; float:left; font-size: 20px;}
+article img, article a{width: 90%; margin-right: 15%; margin-left: 5%; margin-top: 15px; float:left;}
+aside h3{text-align: center; background-color: #007aad; color:#FFFFFF; padding:10px;}
+#menu-principal ul{text-align: center;}
+#menu-principal li{display: inline-block;}
+#menu-principal li{text-align: center;}
+a{color:#007aad;}
+#centrar{width: 90%; margin:auto;}
+nav{width: 100%; height: 50px; background-color: #74b138; float:left; list-style:none;}
+nav ul{list-style:none;}
+nav > li{float:left; margin-left: 10px;    margin-left: 49px;}
+nav li a{background-color: #74b138; color: #fff; text-decoration:none; padding: 13px 40px; display: block; font-size: 20px; margin-right: 25px;}
+nav li a:hover{background-color: #47964a; color:#F0F0F0;}
+nav li ul{display: none; position: absolute; min-width: 140px;}
+nav li:hover > ul{display: block;}
+#div1{width: 100%; height: 160px; float:left; background-color: #FFFFFF;}
+#div1 img{width:70%; height: 60%; padding-left: 15%; padding-top: 32px;}
+#div2 img{width:80%; height: 80%; padding-left: 15%; padding-top: 32px;}
+section{width: 75%; height: auto; background: white; margin-top: 0px; position: relative; left: 25%;}
+h4{text-align: center;}
+#form1{float: center; width: 90%; height: auto; margin-right: auto; margin-left: auto; margin-top: 0px; padding: 15px 0px; border-top:1px solid #E0E0E0;}
+legend{text-align: center;}
+input{margin-left: 15px;}
+
+
+
+.botonEspecial {
+    background-color:#f4511e;
+    border-color:#f4511e;
+    border-radius:10px;
+}
+
+
+.ocultar {
+    visibility: hidden;
+    
+}
+
+.mostrar {
+   
+    visibility: visible;
+}
+
