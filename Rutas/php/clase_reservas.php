@@ -44,10 +44,10 @@
 			return $mensaje;
 		}
 		//pagina web
-		function seleccionarTodasReservas(){
-			$consulta="select * from reservas";
+		function seleccionarTodasReservas($idUsuario){
+			$consulta="select reservas.ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  WHERE ID_USUARIO = $idUsuario";
 			if($resultado=$this->conexion->query($consulta)){
-				return resultado;
+				return $resultado;
 			}
 		}
 		//pagina web
