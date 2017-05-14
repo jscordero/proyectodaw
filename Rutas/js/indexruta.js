@@ -75,6 +75,7 @@ function CargarRutaInicio(ruta){
 			$('#PDF').attr("download",(data[0].nombre))
 			$('#descripcion').html(data[0].consejos)
 			$('#mapa').html(data[0].mapa)	
+			actualizarComentarios()
 			dato={
 				id:id
 			}
@@ -142,7 +143,7 @@ function cargarRutasFecha(){
 			success: function(data){ 
 			
 				if(data[0].nombre=="vacio"){
-						alert("No Hay rutas para esa fecha");
+						alert("No Hay rutas para esa fecha")
 						//cargarRutas()
 				}else{			
 					$('#lista').html("")
@@ -207,9 +208,14 @@ function cargarRutasLocalidad(){
 
 
 $(document).ready(function(){
+	$('#mostrar_comentarios').change(actualizarComentarios)
+	$('#caja_comentario').keyup(cuenta)
+	comprobarBotones()
+	$('#enviarComentario').click(guardarComentario)
 	console.log("dentro")
 	$('#reset').click(reseteo)
 	$('#rutero').click(annadir)
+	$('#nuevocomentario').click(abrirComentario)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
 		var hoy= new Date()
 			$.datepicker.regional['es'] = {
@@ -285,6 +291,7 @@ $('#guardar_Reserva').click(guardarReserva)
 	});
 	
 	$('#close').click(cerrarPopUp);
+	$('#close2').click(cerrarPopUpComentario);
 })
 	function guardarReserva(){
 		var id=$('#id_ruta').val()
@@ -332,7 +339,7 @@ $('#guardar_Reserva').click(guardarReserva)
 				acompa+="<p>"+data+"</p>"
 				console.log("guardado"+acompa)
 				$('#listado_ruteros').html(acompa)
-					
+				cerrarPopUp()	
 			}
 		})
 	}
@@ -358,6 +365,10 @@ function annadir(){
 	}
 	
 }
+function cerrarPopUpComentario(){
+	$('#caja_comentario').val("")
+	$('.overlay-container2').fadeOut().end().find('.window-container2').removeClass('window-container-visible2');
+}
 
 function cerrarPopUp(){
 		$('#listado_ruteros').removeClass("mostrar")
@@ -378,3 +389,102 @@ function cerrarPopUp(){
 		cargarRutas()
 		cargarRutaInicio($('#listado').val())
 	}
+	
+	function abrirComentario(){
+		$('#caja_comentario').val("")
+		type = $(this).attr('data-type');
+		cuenta()
+		$('.overlay-container2').fadeIn(function() {
+			
+			window.setTimeout(function(){
+				$('.window-container2.'+type).addClass('window-container-visible2');
+			}, 100);
+			
+		});
+	}
+	
+	function guardarComentario(){
+		var idruta=$('#id_ruta').val()
+		var comentario = $('#caja_comentario').val()
+		datos={
+			ruta:idruta,
+			comentario:comentario
+		}
+		$.ajax({
+			data:datos,
+			url:'usuarios/php/Guardar_Comentario.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){
+				console.log(data)
+				cerrarPopUpComentario()
+				$('#caja_comentario').val("")
+				actualizarComentarios()
+			}
+		})
+	}
+	
+	function actualizarComentarios(){
+		var idruta=$('#id_ruta').val()
+		var datos={
+			id:idruta
+		}
+		$.ajax({
+			data:datos,
+			url:'usuarios/php/mostrarComentarios.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){		
+				var imprimir=0;
+				$('#comentarios_usuarios').html("")
+				var total = $('#mostrar_comentarios').val()
+				if(data.length<=total){
+					imprimir = data.length
+				}else{
+					imprimir = total
+				}			
+				var enlace=""
+				for(var x=0;x<imprimir;x++){
+					enlace+="<section class='foros'>"					
+					enlace+="<artiche class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
+					enlace+="<article class='container'><p class='foros2'>"+data[x].mensaje+"</p></article>"				
+					enlace+="</section>"
+				}
+				if(imprimir==0){
+					enlace+="<section class='foros'>"					
+					enlace+="<artiche class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
+					enlace+="<article class='container'><p class='foros2'>Sé el primero en hacer un comentario</p></article>"				
+					enlace+="</section>"
+				}
+				
+				$('#comentarios_usuarios').html(enlace)
+			}
+		})
+	}
+	
+	function comprobarBotones(){
+		$.ajax({
+			url:'usuarios/php/clase_sessiones.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){
+				console.log(data.nombre)
+				if(data.id==""){
+					$('#nuevocomentario').removeClass("mostrar")
+					$('#nuevocomentario').addClass("oculto")
+				}else{
+					$('#nuevocomentario').removeClass("oculto")
+					$('#nuevocomentario').addClass("mostrar")
+				}
+				
+			}
+		})
+	}
+	
+	function cuenta(){
+       var numeros = $('#caja_comentario').val()
+	   console.log(numeros.length)
+	   var quedan = 2000 - numeros.length
+	   $('#contador').html(quedan)
+	   console.log(quedan)
+	} 

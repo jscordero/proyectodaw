@@ -18,14 +18,50 @@
 		background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007f7f7f', endColorstr='#e67f7f7f',GradientType=1 );
 	}
+	.overlay-container2 {
+		
+		display: none;
+		content: " ";
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%, rgba(127,127,127,0.9) 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,0)), color-stop(100%,rgba(127,127,127,0.9)));
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+		background: -o-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+		background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(127,127,127,0.9) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007f7f7f', endColorstr='#e67f7f7f',GradientType=1 );
+	}
 	#distancia{
 		position:left;
+	}
+	.window-container2 {
+		list-style:none;
+		border:1px solid green;
+		display: block;
+		background: #74b138;
+		margin: 8em auto;
+		width: 75%;
+		
+		text-align: left;
+		z-index: 3;
+		border-radius: 4px;
+		box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+		-webkit-transition: 0.4s ease-out;
+		-moz-transition: 0.4s ease-out;
+		-ms-transition: 0.4s ease-out;
+		-o-transition: 0.4s ease-out;
+		transition: 0.4s ease-out;
+		opacity: 0;
 	}
 	.window-container {
 		list-style:none;
 		border:1px solid green;
 		display: block;
-		background: #fcfcfc;
+		background: #74b138;
 		margin: 8em auto;
 		width: 30%;
 		padding: 10px 20px 20px;
@@ -56,6 +92,13 @@
 	}
 	
 	.window-container-visible {
+		-webkit-transform:  scale(1);
+		-moz-transform:  scale(1);
+		-ms-transform:  scale(1);
+		transform:  scale(1);
+		opacity: 1;
+	}
+	.window-container-visible2 {
 		-webkit-transform:  scale(1);
 		-moz-transform:  scale(1);
 		-ms-transform:  scale(1);
@@ -97,22 +140,63 @@
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#dcdcdc',GradientType=0 );
 				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 			}
+			.bforo{
+				float:right;
+			}			
+			
+			#comentario_user{
+				
+				border:1px solid rgb(170, 170, 170);
+				border-radius:4px;
+				height:200px;
+			}
+			#comentarios_usuarios{
+				width:90%;
+				margin-left:5%;
+			}
+			
+			table{
+				width:100%;
+			}
+			
+			td{
+				width:40px;
+				
+			}
+			
+			#caja_comentario{
+				padding:0px;
+				margin:0px;
+				border:0px;
+				border-radius:5px;
+				width:100%;
+				height:100%;
+				resize:none;
+			}
+			
 		#menu-busqueda{
-			background-color:white;
+			
 			margin-top:16px;
-			color:black;
+			color:white;
+			
+		}
+		#menu-busqueda input{
+			width:80%;
 			
 		}
 		#menu-busqueda p{
-			margin:5px;
+			margin-left:5px;
+			padding: 10px;
 		}
-		
-				
-		#textarea{
-			resize: vertical;
-			
+		#menu-busqueda select,#menu-busqueda input{			
+			margin-left:5%;
+			padding: 10px;	
+			text-align:center;			
 		}
-		
+					
+		a{
+			text-decoration:none;
+		}
 		.window-container div{
 			
 			margin-bottom:5px;
@@ -121,10 +205,11 @@
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
 			padding:5px;
+			background-color:white;
 		}
 		.window-container .acompanante input{
 			float:right;		
-			
+			background-color:white;
 		}
 		
 		
@@ -132,38 +217,42 @@
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
 			padding:5px;
+			background-color:white;
 					
 			
 		}
 		.window-container .acompanante li{
-			padding:5px;		
+			padding:5px;	
+			background-color:white;			
 			
 		}
 		.window-container #reservar{
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
-			padding:5px;;
+			padding:5px;
+			background-color:white;
 		}
 		aside select, imput{
 			width:91%;
 		}
-		aside div{
-			color:black;
-			width:90%;
-		}
-		
-		
-		
-		#ruta{			
-			border:1px solid rgb(170, 170, 170);
-			
-			
-		height: 150px;
+				
+		#ruta{	
+			width:90%;		
+			margin-left:5%;
+			border:1px solid rgb(170, 170, 170);		
+			height: 150px;
 			border-radius:4px;
 			margin-bottom:15px;
-			padding-left:20px;
+			
 		}
-		
+		#comentarios{
+			
+			width:100%;		
+			
+			border:1px solid rgb(170, 170, 170);
+			border-radius:4px;
+			
+		}
 		#titulo_ruta{
 		
 			display:inline;
@@ -194,8 +283,11 @@
 			list-style:none;
 			float:left;			
 		}
-		aside #datepicker{
-			margin-left:0px;
+		
+		
+		#ruta_tamanio{
+			width:90%;		
+			margin-left:5%;
 		}
 		#tabs li{			
 			width:200px;
@@ -207,6 +299,80 @@
 			margin-top: 15px;
 			float:none;
 		}
+		
+		.foros2{
+			font-size:0.8em;
+			padding-bottom:15px;
+			
+		}
+		.foros{
+			margin-top:15px;
+			background-color:#74b138;
+			border-radius:4px;
+			width:100%;
+			position:relative;
+			left:0%;
+			
+			
+		}
+		.container{
+			overflow-y:scroll;
+			
+			border:1px solid rgb(170, 170, 170);
+			border-radius:4px;
+			background-color:white;
+			width:99.7%;
+			height:200px;
+		}
+		table{
+			background-color:#74b138;
+		}
+		#clear{
+			clear:both;
+		}
+		body{
+			text-align:justify;
+		}
+		.foro1 a{
+			display:inline;
+		}
+		.foro1{
+			padding-top:10px;
+			padding-Bottom:10px;
+			border-radius:4px;
+			height:10px;
+			background-color:#74b138;
+		}
+		.nick{
+			font-size:10px;
+			float:left;
+			color: White;
+			padding:15px;
+		}
+		.fecha_foro{
+			font-size:10px;
+			float:right;
+			color: White;
+			padding:15px;
+		}
+		#seleccion{
+			margin-top:5px;
+			width:90%;
+			margin-left:5%;
+		}
+		#seleccion P{
+			text-align:center;
+			font-size:20px;
+			color:#74b138;
+		}
+		#nuevocomentario{			
+			float:left;		
+		}
+		#mostrar_totales_comentarios{	
+			padding:5px;
+			margin:5px;
+			float:right;			
+		}
 		li #icon{			
 			margin-right: 0;
 			margin-left: 0;
@@ -214,6 +380,9 @@
 			width:50px;
 			height:50px;
 			float:none;
+		}
+		#reset{
+			margin-left: 20%;
 		}
 		.reserva{
 			border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px;

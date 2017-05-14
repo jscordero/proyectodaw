@@ -25,9 +25,9 @@
 
         <body>
             <nav id="menu-top">
-                 <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
+                 <div id="desc" class="oculto" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
-                <li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+                <li id="liLogueo" class="oculto"><a href="#">Loguearse</a>
                     <ul id="ulLogueo" class="mostrar">
                         <li>
                             <form>
@@ -43,7 +43,7 @@
                     </ul>
                 </li>
                
-                <li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+                <li><a href="#" id="liRegistro" class="oculto">Registrarse</a>
                     <ul class="mostrar" id="ulRegistro">
                         <li>
                             <form id="insert" >
@@ -111,8 +111,8 @@
 		</aside>
 		
 		<section>
-			<article>
-			 <div id="ruta">
+		<article>
+		 <div id="ruta">
 			 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
 				<p><li id="especial">Localidad: <span id="localidad"></span></li>
 				</p>
@@ -122,46 +122,68 @@
 				<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
 				<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
 			 </div>
-			
-			<div id="tabs">
-			<ul>
-				<li><a href="#tabs-1">Descripción</a></li>
-				<li><a href="#tabs-2">Mapa</a></li>
-			</ul>
-			<div id="tabs-1"><div id="descripcion"></div></div>
-			<div id="tabs-2"><div id="mapa"></div></div>
-			
-			
+		<div id="ruta_tamanio">
+		<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Descripción</a></li>
+			<li><a href="#tabs-2">Mapa</a></li>
+		</ul>
+		<div id="tabs-1"><div id="descripcion"></div></div>
+		<div id="tabs-2"><div id="mapa"></div></div>		
+		</div>
+		</div>	
+		<div id="seleccion"><p>COMENTARIOS: </p><a id="nuevocomentario" class="reserva" class="button" data-type="zoomin" href="#">Añadir</a>
+			<span id="mostrar_totales_comentarios">Mostrar: <select id="mostrar_comentarios">			
+					<option selected>5</option>
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>					
+				</select>
+			</span>
+		</div>
+		<div id="clear"></div>
+		<div id="comentarios_usuarios"><div>
+		</article>			
+	</section>
+       
+    </div>
+    </div>
+     <footer>
+    <p>RUTAS DoubleG S.A©</p>
+	</footer>
+    </div>
+    <div class="overlay-container">
+		<div class="window-container zoomin">
+		<span id="close" class="button reserva">Cerrar</span>
+			<div id="reservar">
+			<li>Ruta: <span id="rutareserva"></span></li>
+			<li>Nombre completo: <span id="nombrecompleto"></span></li>
+			<li><label>DNI: <span id="DNIreserva"></span>	</li>
 			</div>
 			
-			</article>
-			
-		</section>
-		
-    </div>
-	
-	<footer>
-		<p>RUTAS DoubleG S.A©</p>
-	</footer>
-		<div class="overlay-container">
-			<div class="window-container zoomin">
-			<span id="close" class="button reserva">Cerrar</span>
-				<div id="reservar">
-				<li>Ruta: <span id="rutareserva"></span></li>
-				<li>Nombre completo: <span id="nombrecompleto"></span></li>
-				<li><label>DNI: <span id="DNIreserva"></span>	</li>
-				</div>
-				
-				<div class="acompanante">	
-				<p>Nuevo/a comapañero/a</p>					
-				<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
-				<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
-				</div>
-				<div id="listado_ruteros" class="oculto"></div>
-				<a href="#" id="rutero" class="button reserva">Añadir</a>
-				<span id="guardar_Reserva" class="button reserva">Guardar</span>
-			</div>			
+			<div class="acompanante">	
+			<p>Nuevo/a comapañero/a</p>					
+			<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
+			<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
+			</div>
+			<div id="listado_ruteros" class="oculto"></div>
+			<a href="#" id="rutero" class="button reserva">Añadir</a>
+			<span id="guardar_Reserva" class="button reserva">Guardar</span>
 		</div>			
-        </body>
+	</div>	
+	<div class="overlay-container2">
+		<div class="window-container2 zoomin">
+		<div id="comentarios">
+			<table>
+			<tr><td colspan=3>Tu Comentario</td><td colspan=3><span id="close2" class="button reserva bforo">Cerrar</span></td></tr>
+			<tr><td colspan=6  id="comentario_user"><textarea id="caja_comentario" maxlength=2000></textarea></td></tr>
+
+			<tr><td colspan=2>Máximo: <span id="contador">2000</span></td><td colspan=4><span  id="enviarComentario" class="button reserva bforo">Enviar</span></td></tr>
+			</table>
+			</div>
+		</div>	
+	</div>		
+</body>
 
     </html>
