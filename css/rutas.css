@@ -177,18 +177,23 @@
 		#menu-busqueda{
 			
 			margin-top:16px;
-			color:black;
+			color:white;
+			
+		}
+		#menu-busqueda input{
+			width:80%;
 			
 		}
 		#menu-busqueda p{
-			margin:5px;
+			margin-left:5px;
+			padding: 10px;
 		}
-		
-				
-		#textarea{
-			resize: vertical;
-			
+		#menu-busqueda select,#menu-busqueda input{			
+			margin-left:5%;
+			padding: 10px;	
+			text-align:center;			
 		}
+					
 		a{
 			text-decoration:none;
 		}
@@ -230,10 +235,7 @@
 		aside select, imput{
 			width:91%;
 		}
-		aside div{
-			color:black;
-			width:90%;
-		}		
+				
 		#ruta{	
 			width:90%;		
 			margin-left:5%;
@@ -281,9 +283,7 @@
 			list-style:none;
 			float:left;			
 		}
-		aside #datepicker{
-			margin-left:0px;
-		}
+		
 		
 		#ruta_tamanio{
 			width:90%;		
@@ -380,6 +380,9 @@
 			width:50px;
 			height:50px;
 			float:none;
+		}
+		#reset{
+			margin-left: 20%;
 		}
 		.reserva{
 			border-radius: 20px; background-color: #f4511e; border: none; color: #FFFFFF; text-align: center; font-size: 18px; padding: 5px; width: 150px; transition: all 0.5s; cursor: pointer;margin: 5px;

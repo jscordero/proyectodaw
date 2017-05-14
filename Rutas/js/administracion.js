@@ -1,4 +1,4 @@
-var localidades=['Abadía','Aldeanueva del Camino','Baños de Montemayor','Gargantilla','Casas del Monte','Segura del Toro','Gargantilla','Hervás']
+var localidades=['Abadía','Aldeanueva del Camino','Baños de Montemayor','Gargantilla','Casas del Monte','Segura del Toro','La Garganta','Hervás']
 var dificultades=['Baja', 'Media', 'Alta']
 function buscarLoc(local){
 	
