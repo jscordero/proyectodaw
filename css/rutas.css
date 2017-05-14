@@ -1,8 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Pontano+Sans|Oleo+Script);
 	
-	body{
-		style-font:justify
-	}
+		
 	.overlay-container {
 		
 		display: none;
@@ -44,13 +42,13 @@
 		list-style:none;
 		border:1px solid green;
 		display: block;
-		background: #fcfcfc;
+		background: #74b138;
 		margin: 8em auto;
-		width: 30%;
-		padding: 10px 20px 20px;
+		width: 75%;
+		
 		text-align: left;
 		z-index: 3;
-		border-radius: 3px;
+		border-radius: 4px;
 		box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
 		-webkit-transition: 0.4s ease-out;
 		-moz-transition: 0.4s ease-out;
@@ -63,7 +61,7 @@
 		list-style:none;
 		border:1px solid green;
 		display: block;
-		background: #fcfcfc;
+		background: #74b138;
 		margin: 8em auto;
 		width: 30%;
 		padding: 10px 20px 20px;
@@ -152,6 +150,11 @@
 				border-radius:4px;
 				height:200px;
 			}
+			#comentarios_usuarios{
+				width:90%;
+				margin-left:5%;
+			}
+			
 			table{
 				width:100%;
 			}
@@ -186,7 +189,9 @@
 			resize: vertical;
 			
 		}
-		
+		a{
+			text-decoration:none;
+		}
 		.window-container div{
 			
 			margin-bottom:5px;
@@ -195,10 +200,11 @@
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
 			padding:5px;
+			background-color:white;
 		}
 		.window-container .acompanante input{
 			float:right;		
-			
+			background-color:white;
 		}
 		
 		
@@ -206,17 +212,20 @@
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
 			padding:5px;
+			background-color:white;
 					
 			
 		}
 		.window-container .acompanante li{
-			padding:5px;		
+			padding:5px;	
+			background-color:white;			
 			
 		}
 		.window-container #reservar{
 			border:1px solid rgb(170, 170, 170);
 			width:97%;
-			padding:5px;;
+			padding:5px;
+			background-color:white;
 		}
 		aside select, imput{
 			width:91%;
@@ -224,10 +233,7 @@
 		aside div{
 			color:black;
 			width:90%;
-		}
-		
-		
-		
+		}		
 		#ruta{	
 			width:90%;		
 			margin-left:5%;
@@ -238,9 +244,9 @@
 			
 		}
 		#comentarios{
-			margin-top:15px;
-			width:90%;		
-			margin-left:5%;
+			
+			width:100%;		
+			
 			border:1px solid rgb(170, 170, 170);
 			border-radius:4px;
 			
@@ -293,20 +299,79 @@
 			margin-top: 15px;
 			float:none;
 		}
-		.foros{
-			border:1px solid rgb(170, 170, 170);
-			border-radius:4px;
+		
+		.foros2{
+			font-size:0.8em;
+			padding-bottom:15px;
 			
 		}
-		.foro1{
+		.foros{
+			margin-top:15px;
+			background-color:#74b138;
+			border-radius:4px;
 			width:100%;
+			position:relative;
+			left:0%;
+			
+			
+		}
+		.container{
+			overflow-y:scroll;
+			
+			border:1px solid rgb(170, 170, 170);
+			border-radius:4px;
+			background-color:white;
+			width:99.7%;
+			height:200px;
+		}
+		table{
+			background-color:#74b138;
+		}
+		#clear{
+			clear:both;
+		}
+		body{
+			text-align:justify;
+		}
+		.foro1 a{
+			display:inline;
+		}
+		.foro1{
+			padding-top:10px;
+			padding-Bottom:10px;
+			border-radius:4px;
+			height:10px;
+			background-color:#74b138;
 		}
 		.nick{
 			font-size:10px;
 			float:left;
+			color: White;
+			padding:15px;
 		}
 		.fecha_foro{
+			font-size:10px;
 			float:right;
+			color: White;
+			padding:15px;
+		}
+		#seleccion{
+			margin-top:5px;
+			width:90%;
+			margin-left:5%;
+		}
+		#seleccion P{
+			text-align:center;
+			font-size:20px;
+			color:#74b138;
+		}
+		#nuevocomentario{			
+			float:left;		
+		}
+		#mostrar_totales_comentarios{	
+			padding:5px;
+			margin:5px;
+			float:right;			
 		}
 		li #icon{			
 			margin-right: 0;

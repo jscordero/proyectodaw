@@ -111,8 +111,8 @@
 		</aside>
 		
 		<section>
-			<article>
-			 <div id="ruta">
+		<article>
+		 <div id="ruta">
 			 <div id="titulo_ruta"><input type="hidden" id="id_ruta"/><p id="nombre_ruta"></p><p id="valoracion"></p></div>
 				<p><li id="especial">Localidad: <span id="localidad"></span></li>
 				</p>
@@ -122,22 +122,30 @@
 				<p><li><a id="PDF"  href="" download=""><img id="icon" src="img/pdf.png"></img></a></li>
 				<li><a id="botonreserva" class="reserva" class="button" data-type="zoomin" href="#">RESERVAR</a></li><li>Fechas: <div id="fechas_ruta"></div></li></p>
 			 </div>
-			
-			<div id="tabs">
-			<ul>
-				<li><a href="#tabs-1">Descripción</a></li>
-				<li><a href="#tabs-2">Mapa</a></li>
-			</ul>
-			<div id="tabs-1"><div id="descripcion"></div></div>
-			<div id="tabs-2"><div id="mapa"></div></div>
-			
-			
-			</div>
-			<a id="nuevocomentario" class="reserva" class="button" data-type="zoomin" href="#">Añadir</a>
-			<div id="comentarios_usuarios"><div>
-			</article>
-			
-		</section>
+		<div id="ruta_tamanio">
+		<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Descripción</a></li>
+			<li><a href="#tabs-2">Mapa</a></li>
+		</ul>
+		<div id="tabs-1"><div id="descripcion"></div></div>
+		<div id="tabs-2"><div id="mapa"></div></div>		
+		</div>
+		</div>	
+		<div id="seleccion"><p>COMENTARIOS: </p><a id="nuevocomentario" class="reserva" class="button" data-type="zoomin" href="#">Añadir</a>
+			<span id="mostrar_totales_comentarios">Mostrar: <select id="mostrar_comentarios">			
+					<option selected>5</option>
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>					
+				</select>
+			</span>
+		</div>
+		<div id="clear"></div>
+		<div id="comentarios_usuarios"><div>
+		</article>			
+	</section>
        
     </div>
     </div>
@@ -165,15 +173,17 @@
 		</div>			
 	</div>	
 	<div class="overlay-container2">
+		<div class="window-container2 zoomin">
 		<div id="comentarios">
 			<table>
 			<tr><td colspan=3>Tu Comentario</td><td colspan=3><span id="close2" class="button reserva bforo">Cerrar</span></td></tr>
-			<tr><td colspan=6  id="comentario_user"><textarea id="caja_comentario" ></textarea></td></tr>
+			<tr><td colspan=6  id="comentario_user"><textarea id="caja_comentario" maxlength=2000></textarea></td></tr>
 
-			<tr><td colspan=6><span  id="enviarComentario" class="button reserva bforo">Enviar</span></td></tr>
+			<tr><td colspan=2>Máximo: <span id="contador">2000</span></td><td colspan=4><span  id="enviarComentario" class="button reserva bforo">Enviar</span></td></tr>
 			</table>
+			</div>
 		</div>	
-	</div>	
+	</div>		
 </body>
 
     </html>

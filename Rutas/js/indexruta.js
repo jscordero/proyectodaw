@@ -208,6 +208,9 @@ function cargarRutasLocalidad(){
 
 
 $(document).ready(function(){
+	$('#mostrar_comentarios').change(actualizarComentarios)
+	$('#caja_comentario').keyup(cuenta)
+	comprobarBotones()
 	$('#enviarComentario').click(guardarComentario)
 	console.log("dentro")
 	$('#reset').click(reseteo)
@@ -363,6 +366,7 @@ function annadir(){
 	
 }
 function cerrarPopUpComentario(){
+	$('#caja_comentario').val("")
 	$('.overlay-container2').fadeOut().end().find('.window-container2').removeClass('window-container-visible2');
 }
 
@@ -387,8 +391,9 @@ function cerrarPopUp(){
 	}
 	
 	function abrirComentario(){
+		$('#caja_comentario').val("")
 		type = $(this).attr('data-type');
-		
+		cuenta()
 		$('.overlay-container2').fadeIn(function() {
 			
 			window.setTimeout(function(){
@@ -429,14 +434,27 @@ function cerrarPopUp(){
 			url:'usuarios/php/mostrarComentarios.php',
 			type:'POST',
 			DataType:'Json',
-			success:function(data){				
+			success:function(data){		
+				var imprimir=0;
 				$('#comentarios_usuarios').html("")
+				var total = $('#mostrar_comentarios').val()
+				if(data.length<=total){
+					imprimir = data.length
+				}else{
+					imprimir = total
+				}			
 				var enlace=""
-				for(var x=0;x<data.length;x++){
-					enlace+="<article class='foros'>"					
-					enlace+="<p class='foros1'><span class='nick'>"+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></p>"
-					enlace+="<article><p class='foros2'>"+data[x].mensaje+"</p></article>"				
-					enlace+="</article>"
+				for(var x=0;x<imprimir;x++){
+					enlace+="<section class='foros'>"					
+					enlace+="<artiche class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
+					enlace+="<article class='container'><p class='foros2'>"+data[x].mensaje+"</p></article>"				
+					enlace+="</section>"
+				}
+				if(imprimir==0){
+					enlace+="<section class='foros'>"					
+					enlace+="<artiche class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
+					enlace+="<article class='container'><p class='foros2'>Sé el primero en hacer un comentario</p></article>"				
+					enlace+="</section>"
 				}
 				
 				$('#comentarios_usuarios').html(enlace)
@@ -444,3 +462,29 @@ function cerrarPopUp(){
 		})
 	}
 	
+	function comprobarBotones(){
+		$.ajax({
+			url:'usuarios/php/clase_sessiones.php',
+			type:'POST',
+			DataType:'Json',
+			success:function(data){
+				console.log(data.nombre)
+				if(data.id==""){
+					$('#nuevocomentario').removeClass("mostrar")
+					$('#nuevocomentario').addClass("oculto")
+				}else{
+					$('#nuevocomentario').removeClass("oculto")
+					$('#nuevocomentario').addClass("mostrar")
+				}
+				
+			}
+		})
+	}
+	
+	function cuenta(){
+       var numeros = $('#caja_comentario').val()
+	   console.log(numeros.length)
+	   var quedan = 2000 - numeros.length
+	   $('#contador').html(quedan)
+	   console.log(quedan)
+	} 
