@@ -1,6 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Pontano+Sans|Oleo+Script);
 	
-		
+	body{
+		style-font:justify
+	}
 	.overlay-container {
 		
 		display: none;
