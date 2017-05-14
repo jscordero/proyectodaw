@@ -74,4 +74,36 @@ $(document).ready(function() {
 
         });
     });
+    
+   
+    
+    
+     $.ajax({
+            
+            url:   'Usuarios/php/mostrarReservas.php',
+            type:  'post',
+            dataType: 'Json',
+            beforeSend: function () {
+                $("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response) {
+                console.log(response);
+                 var reservas = $('#reservas');
+                var tabla = "<table id='tablaReservas'><caption><h2>Tus reservas:</h2></caption><tr><th>Fecha</th><th>Ruta</th><th>Personas</th></tr>"
+                for(var i = 0; i < response.length; i++) {
+                    tabla += "<tr>";
+                    tabla += "<td style='width:150px;'>" + response[i].fecha; + "</td>";
+                    tabla += "<td>" + response[i].nombreRuta; + "</td>";
+                    tabla += "<td style='width:450px;'>" + response[i].personas; + "</td>";
+                    tabla += "</tr>";
+                }
+                tabla += "</table>";
+                reservas.html(tabla);
+                tablaEstilos = $("#tablaReservas");
+                tablaEstilos.children.children.style = "border:2px solid red;";
+            }
+
+
+        });
+    
 });
